@@ -1,253 +1,307 @@
-import { useState } from 'react'
-import myimage from '../assets/image.png'
+import { useState } from "react";
+import "../component/aakam.css"
 
-const Login = () => {
 
-  const [tab, setTab] = useState('signin')
+const IconUser = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="8" cy="5.5" r="2.5" />
+    <path d="M2.5 14c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
+  </svg>
+);
+
+const IconLock = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="3" y="7" width="10" height="8" rx="1.5" />
+    <path d="M5 7V5.5a3 3 0 016 0V7" />
+  </svg>
+);
+
+const IconEmail = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="2" y="4" width="12" height="9" rx="1.5" />
+    <path d="M2 5.5l6 4 6-4" />
+  </svg>
+);
+
+/* ─────────────────────────────────────────
+   LOGO
+───────────────────────────────────────── */
+function Logo({ small = false }) {
+  return (
+    <a href="#" className="as-logo">
+      <div className="as-logo-emblem" style={small ? { width: 30, height: 30 } : {}}>
+        <div className="as-blade" />
+        <div className="as-blade" />
+        <div className="as-blade" />
+        <div className="as-blade" />
+      </div>
+      <div className="as-logo-text">
+        <span className="as-lt-top">aakam</span>
+        <span className="as-lt-bot" style={small ? { fontSize: 18 } : {}}>Shine</span>
+      </div>
+    </a>
+  );
+}
+
+/* ─────────────────────────────────────────
+   FORM FIELD
+───────────────────────────────────────── */
+function Field({ label, type, placeholder, autoComplete, required }) {
+  const icon =
+    type === "email"    ? <IconEmail /> :
+    type === "password" ? <IconLock />  :
+                          <IconUser />;
 
   return (
-    <div>
+    <div className="as-field">
+      <label>
+        {label} {required && <span className="req">*</span>}
+      </label>
+      <div className="as-field-wrap">
+        <span className="as-field-icon">{icon}</span>
+        <input type={type} placeholder={placeholder} autoComplete={autoComplete} />
+      </div>
+    </div>
+  );
+}
 
-      {/* NAVBAR */}
-      <nav className="flex items-center justify-between px-10 h-16 bg-white border-b border-gray-200">
-        
-        {/* Logo */}
-        <img src={myimage} alt="logo" className="w-10" />
+/* ─────────────────────────────────────────
+   TICKER DATA
+───────────────────────────────────────── */
+const TICKER_ITEMS = [
+  { val: "50+",         text: "Startups Incubated" },
+  { val: "12K",         text: "Innovators Connected" },
+  { val: "6+",          text: "Years of Impact" },
+  { val: "Rural",       text: "Innovation Ecosystem" },
+  { val: "Your Growth", text: "Starts Here" },
+];
 
-        {/* Links */}
-        <div className="flex gap-8">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Our Startups</a>
-          <a href="#">Our Ecosystem</a>
-          <a href="#">Events</a>
-          <a href="#">Contact</a>
+/* ─────────────────────────────────────────
+   MAIN COMPONENT
+───────────────────────────────────────── */
+export default function AakamShine() {
+  const [tab, setTab] = useState("SI"); // "SI" = Sign In, "SU" = Sign Up
+
+  return (
+    <div className="as-root">
+
+      {/* ── Animated Background ── */}
+      <div className="as-bg">
+        <div className="as-wash as-wash-a" />
+        <div className="as-wash as-wash-b" />
+        <div className="as-wash as-wash-c" />
+        <div className="as-geo as-geo-sq" />
+        <div className="as-geo as-geo-sq2" />
+        <div className="as-geo as-geo-sq3" />
+        <div className="as-dot as-df1" />
+        <div className="as-dot as-df2" />
+        <div className="as-dot as-df3" />
+        <div className="as-dot as-df4" />
+        <div className="as-scan-line" />
+      </div>
+
+      {/* ── Navbar ── */}
+      <nav className="as-nav">
+        <Logo />
+        <ul className="as-nav-links">
+          {["Home", "About", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((link) => (
+            <li key={link}><a href="#">{link}</a></li>
+          ))}
+        </ul>
+        <div className="as-nav-btns">
+          <button className="as-btn-ghost">Login</button>
+          <button className="as-btn-primary">Subscribe</button>
         </div>
-
-        {/* Buttons */}
-        <div className="flex gap-3">
-          <button className="px-4 py-2 border border-gray-300 rounded-md">
-            Login
-          </button>
-          <button className="px-4 py-2 bg-orange-500 text-white rounded-md">
-            Subscribe
-          </button>
-        </div>
-
       </nav>
 
-      {/* HERO */}
-      <div className="flex items-center justify-between px-16 py-20 bg-gray-50">
-
-        {/* Left Text */}
-        <div>
-          <p className="text-orange-500 font-bold text-sm uppercase mb-4">
-            User Portal
-          </p>
-          <h1 className="text-5xl font-bold text-[#0B1260]">Your Growth</h1>
-          <h1 className="text-5xl font-light italic text-blue-700">Starts</h1>
-          <h1 className="text-5xl font-bold text-[#0B1260]">Here</h1>
-          <div className="w-10 h-1 bg-orange-500 my-5" />
-          <p className="text-gray-500 max-w-sm">
-            Log in to access your space. Access your personalized
-            dashboard, track your applications, and connect with
-            the startup ecosystem.
-          </p>
+      {/* ── Stats Ticker ── */}
+      <div className="as-ticker-wrap" aria-hidden="true">
+        <div className="as-ticker-track">
+          {/* Duplicated for seamless infinite loop */}
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+            <div className="as-ticker-item" key={i}>
+              <span className="as-t-val">{item.val}</span>
+              {item.text}
+              <span className="as-ticker-sep">◆</span>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Right Card */}
-        <div className="w-96 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          
-          {/* Top color bar */}
-          <div className="h-1 bg-gradient-to-r from-blue-900 via-orange-500 to-blue-900" />
+      {/* ── Main Content ── */}
+      <div className="as-main">
 
-          <div className="p-8">
+        {/* Left: Hero Copy */}
+        <div className="as-hero-left">
+          <div className="as-copy-block">
 
-            {/* Brand */}
-            <div className="text-center mb-4">
-              <p className="text-xs text-orange-500 uppercase tracking-widest">aakam</p>
-              <p className="text-xl font-bold text-[#0B1260]">Shine</p>
+            <div className="as-overline">
+              <span className="as-overline-bar" />
+              User Portal
             </div>
 
-            <h2 className="text-xl font-bold text-center mb-1">User Portal</h2>
-            <p className="text-center text-gray-400 text-sm mb-5">
-              Sign in to your account or create a new one
+            <h1 className="as-big-headline">
+              <span className="as-outline-text">Your Growth</span>
+              <span>Starts</span>
+              <span className="as-accent-word">Here.</span>
+            </h1>
+
+            <div className="as-headline-rule" />
+
+            <p className="as-copy-desc">
+              Log in to access your space. Access your <strong>personalized dashboard</strong>,
+              track your applications, and connect with the startup ecosystem.
             </p>
 
-            {/* Tabs */}
-            <div className="flex border-b border-gray-200 mb-5">
+            <p className="as-brand-desc">
+              Building a transformative rural incubation ecosystem to empower rural innovation
+              and drive equitable economic development.
+            </p>
+
+          </div>
+        </div>
+
+        {/* Right: Form Panel */}
+        <div className="as-form-panel">
+          <div className="as-fp-top-bar" />
+          <div className="as-fp-inner">
+
+            <div className="as-fp-portal-tag">User <span>Portal</span></div>
+            <h2 className="as-fp-title">Sign In</h2>
+            <p className="as-fp-sub">Sign in to your account or create a new one</p>
+
+            {/* Tab switcher */}
+            <div className="as-tabs">
               <button
-                onClick={() => setTab('signin')}
-                className={`flex-1 py-2 text-sm font-bold uppercase cursor-pointer border-none bg-transparent ${
-                  tab === 'signin' ? 'text-[#0B1260] border-b-2 border-[#0B1260]' : 'text-gray-400'
-                }`}
+                className={`as-tab-btn${tab === "SI" ? " active" : ""}`}
+                onClick={() => setTab("SI")}
               >
                 Sign In
               </button>
               <button
-                onClick={() => setTab('signup')}
-                className={`flex-1 py-2 text-sm font-bold uppercase cursor-pointer border-none bg-transparent ${
-                  tab === 'signup' ? 'text-[#0B1260] border-b-2 border-[#0B1260]' : 'text-gray-400'
-                }`}
+                className={`as-tab-btn${tab === "SU" ? " active" : ""}`}
+                onClick={() => setTab("SU")}
               >
                 Sign Up
               </button>
             </div>
 
             {/* Sign In Form */}
-            {tab === 'signin' && (
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label className="text-xs font-bold uppercase text-gray-500">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your full name"
-                    className="w-full mt-1 px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg outline-none text-sm"
-                  />
+            {tab === "SI" && (
+              <div>
+                <div className="as-fields">
+                  <Field label="Full Name" type="text"     placeholder="Enter your full name" autoComplete="name"             required />
+                  <Field label="Password"  type="password" placeholder="Enter your password"  autoComplete="current-password"          />
                 </div>
-                <div>
-                  <label className="text-xs font-bold uppercase text-gray-500">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    className="w-full mt-1 px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg outline-none text-sm"
-                  />
+                <div className="as-meta-row">
+                  <a href="#" className="as-meta-link">Forgot password?</a>
                 </div>
-                <button className="w-full py-3 bg-[#0B1260] text-white font-bold rounded-lg">
-                  Sign In
-                </button>
+                <button className="as-cta-btn">Sign In →</button>
               </div>
             )}
 
             {/* Sign Up Form */}
-            {tab === 'signup' && (
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label className="text-xs font-bold uppercase text-gray-500">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your full name"
-                    className="w-full mt-1 px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg outline-none text-sm"
-                  />
+            {tab === "SU" && (
+              <div>
+                <div className="as-fields">
+                  <Field label="Full Name"     type="text"     placeholder="Enter your full name"     autoComplete="name"         required />
+                  <Field label="Email Address" type="email"    placeholder="Enter your email address" autoComplete="email"        required />
+                  <Field label="Password"      type="password" placeholder="Create a password"        autoComplete="new-password" required />
                 </div>
-                <div>
-                  <label className="text-xs font-bold uppercase text-gray-500">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full mt-1 px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg outline-none text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold uppercase text-gray-500">
-                    Password *
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Create a password"
-                    className="w-full mt-1 px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg outline-none text-sm"
-                  />
-                </div>
-                <button className="w-full py-3 bg-[#0B1260] text-white font-bold rounded-lg">
-                  Create Account
-                </button>
+                <button className="as-cta-btn" style={{ marginTop: 4 }}>Create Account →</button>
               </div>
             )}
+
+            {/* Newsletter */}
+            <div className="as-nl-divider">or</div>
+            <div className="as-nl-block">
+              <div className="as-nl-label">Subscribe to Newsletter</div>
+              <div className="as-nl-row">
+                <input type="email" placeholder="Your email address" />
+                <button>Subscribe</button>
+              </div>
+            </div>
+
+            <div className="as-fp-foot">
+              © 2025 <a href="#">Aakam Shine</a>. All rights reserved.
+            </div>
 
           </div>
         </div>
 
-      </div>
+      </div>{/* end .as-main */}
 
-      {/* FOOTER */}
-      <footer className="bg-[#0B1260] text-white px-16 py-12">
-
-        <div className="grid grid-cols-4 gap-10 pb-8 border-b border-white/20">
+      {/* ── Footer ── */}
+      <footer className="as-footer">
+        <div className="as-fg">
 
           {/* Brand */}
           <div>
-            <img src={myimage} alt="logo" className="w-8 mb-3" />
-            <p className="text-sm text-white/50">
-              Building a transformative rural incubation ecosystem
-              to empower rural innovation and drive equitable
-              economic development.
+            <Logo small />
+            <p className="as-f-brand-desc">
+              Building a transformative rural incubation ecosystem to empower rural innovation
+              and drive equitable economic development.
             </p>
+            <div className="as-f-socials">
+              {["𝕏", "in", "f", "▶"].map((icon) => (
+                <div key={icon} className="as-f-soc">{icon}</div>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
-              Quick Links
-            </p>
-            <div className="flex flex-col gap-2">
-              <a href="#" className="text-sm text-white/60 hover:text-white">Home</a>
-              <a href="#" className="text-sm text-white/60 hover:text-white">About</a>
-              <a href="#" className="text-sm text-white/60 hover:text-white">Our Startups</a>
-              <a href="#" className="text-sm text-white/60 hover:text-white">Our Ecosystem</a>
-              <a href="#" className="text-sm text-white/60 hover:text-white">Events</a>
-              <a href="#" className="text-sm text-white/60 hover:text-white">Contact</a>
-            </div>
+            <div className="as-f-ht">Quick Links</div>
+            <ul className="as-f-links">
+              {["Home", "About", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((link) => (
+                <li key={link}><a href="#">{link}</a></li>
+              ))}
+            </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
-              Contact Us
-            </p>
-            <div className="flex flex-col gap-2 text-sm text-white/60">
-              <p>Pullipalayam, Sankari,</p>
-              <p>Tamil Nadu, India, 637304</p>
-              <p>+91 7200 171 774</p>
-              <p>support@aakamshine.com</p>
+            <div className="as-f-ht">Contact Us</div>
+            <div className="as-f-contact">
+              <div className="as-f-dot" />
+              <span>Pullipalayam, Sankari,<br />Tamil Nadu, India, 637304</span>
+            </div>
+            <div className="as-f-contact">
+              <div className="as-f-dot" />
+              +91 7200 171 774
+            </div>
+            <div className="as-f-contact">
+              <div className="as-f-dot" />
+              <a href="mailto:info@aakamshine.com">info@aakamshine.com</a>
             </div>
           </div>
 
           {/* Newsletter */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
-              Newsletter
+            <div className="as-f-ht">Newsletter</div>
+            <p className="as-f-nl-p">
+              Subscribe to our newsletter for the latest updates and innovations.
             </p>
-            <p className="text-sm text-white/50 mb-3">
-              Subscribe for the latest updates and innovations.
-            </p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-l-md outline-none text-white placeholder-white/30"
-              />
-              <button className="px-4 py-2 bg-orange-500 text-white text-sm font-bold rounded-r-md">
-                Subscribe
-              </button>
+            <div className="as-f-nl-row">
+              <input type="email" placeholder="Your email address" />
+              <button>Subscribe</button>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom */}
-        <div className="flex items-center justify-between pt-5">
-          <p className="text-xs text-white/30">
-            © 2025 Aakam Shine. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-xs text-white/30 hover:text-white">Privacy Policy</a>
-            <a href="#" className="text-xs text-white/30 hover:text-white">Terms of Use</a>
-            <a href="#" className="text-xs text-white/30 hover:text-white">Cookie Policy</a>
+        {/* Bottom bar */}
+        <div className="as-fb">
+          <p>© 2025 Aakam Shine. All rights reserved.</p>
+          <div className="as-fb-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookie Policy</a>
           </div>
         </div>
 
       </footer>
 
     </div>
-  )
+  );
 }
-
-export default Login
