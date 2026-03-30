@@ -266,6 +266,109 @@ const Signup = () => {
         </div>
 
       </div>
+      <div className="bg-[#0b1260] text-white px-16 py-16">
+
+  <div className="grid grid-cols-4 gap-10">
+
+    {/* LEFT LOGO + TEXT */}
+    <div>
+       <p className="text-gray-300 text-sm leading-6 mb-6">
+        Building a transformative rural incubation ecosystem to empower rural
+        innovation and drive equitable economic development.
+      </p>
+
+      {/* SOCIAL ICONS */}
+      <div className="flex gap-3">
+        {["X", "in", "f", "▶"].map((icon, i) => (
+          <div
+            key={i}
+            className="w-10 h-10 border border-white/20 rounded-md flex items-center justify-center text-sm cursor-pointer hover:bg-white hover:text-[#0b1260] transition"
+          >
+            {icon}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* QUICK LINKS */}
+    <div>
+      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+        QUICK LINKS
+      </h3>
+
+      <ul className="space-y-3 text-gray-300 text-sm">
+        <li className="hover:text-white cursor-pointer">Home</li>
+        <li className="hover:text-white cursor-pointer">About</li>
+        <li className="hover:text-white cursor-pointer">Our Startups</li>
+        <li className="hover:text-white cursor-pointer">Our Ecosystem</li>
+        <li className="hover:text-white cursor-pointer">Events</li>
+        <li className="hover:text-white cursor-pointer">Contact</li>
+      </ul>
+    </div>
+
+    {/* CONTACT */}
+    <div>
+      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+        CONTACT US
+      </h3>
+
+      <ul className="space-y-4 text-gray-300 text-sm">
+        <li className="flex gap-2">
+          <span className="text-orange-500">•</span>
+          Pullipalayam, Sankari, Tamil Nadu, India, 637304
+        </li>
+
+        <li className="flex gap-2">
+          <span className="text-orange-500">•</span>
+          +917200171774
+        </li>
+
+        <li className="flex gap-2">
+          <span className="text-orange-500">•</span>
+          hello@aakamshine.com
+        </li>
+      </ul>
+    </div>
+
+    {/* NEWSLETTER */}
+    <div>
+      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+        NEWSLETTER
+      </h3>
+
+      <p className="text-gray-300 text-sm mb-4">
+        Subscribe to our newsletter for the latest updates and innovations.
+      </p>
+
+      <div className="flex">
+        <input
+          type="email"
+          placeholder="Your email address"
+          className="flex-1 px-4 py-3 bg-[#1a237e] text-white rounded-l-md outline-none text-sm"
+        />
+
+        <button className="bg-orange-500 px-5 rounded-r-md font-semibold text-sm hover:bg-orange-600 transition">
+          SUBSCRIBE
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  {/* BOTTOM LINE */}
+  <div className="border-t border-white/10 mt-12 pt-6 flex justify-between text-gray-400 text-sm">
+
+    <p>© 2025 Aakam Shine. All rights reserved.</p>
+
+    <div className="flex gap-6">
+      <span className="hover:text-white cursor-pointer">Privacy Policy</span>
+      <span className="hover:text-white cursor-pointer">Terms of Use</span>
+      <span className="hover:text-white cursor-pointer">Cookie Policy</span>
+    </div>
+
+  </div>
+
+</div>
 
     </div>
   )
