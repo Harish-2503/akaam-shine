@@ -46,7 +46,7 @@ const Signup = () => {
         </div>
       </div>
 
-      {/* 🔥 HERO + LOGIN WRAPPER */}
+      {/*HERO + LOGIN WRAPPER */}
       <div className="flex ">
 
         {/* LEFT HERO */}
@@ -92,7 +92,7 @@ const Signup = () => {
           </div>
         </div>
 
-        {/* 🔥 RIGHT SIGN IN */}
+        {/*RIGHT SIGN IN */}
         <div className="w-[30%] bg-white flex items-start justify-end pt-[44px] pr-[80px] relative border-l border-white shadow-xl">
           <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#f97316] via-[#f97316] to-black"></div>
           <div className="w-[320px]">
