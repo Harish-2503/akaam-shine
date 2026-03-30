@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.scroll-animation {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Outline text */
+.stroke-text {
+  -webkit-text-stroke: 5px #1e2a78; /* dark blue border */
+  color: transparent; /* inside empty */
+  
+}

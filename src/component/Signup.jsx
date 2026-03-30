@@ -1,307 +1,274 @@
-import { useState } from "react";
-import "../component/aakam.css"
-
-
-const IconUser = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="8" cy="5.5" r="2.5" />
-    <path d="M2.5 14c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
-  </svg>
-);
-
-const IconLock = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <rect x="3" y="7" width="10" height="8" rx="1.5" />
-    <path d="M5 7V5.5a3 3 0 016 0V7" />
-  </svg>
-);
-
-const IconEmail = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <rect x="2" y="4" width="12" height="9" rx="1.5" />
-    <path d="M2 5.5l6 4 6-4" />
-  </svg>
-);
-
-/* ─────────────────────────────────────────
-   LOGO
-───────────────────────────────────────── */
-function Logo({ small = false }) {
+import React from 'react'
+import { useState } from 'react';
+// import images from "../assets/images.png"
+const Signup = () => {
+  const [isLogin, setIsLogin] = useState(true);
   return (
-    <a href="#" className="as-logo">
-      <div className="as-logo-emblem" style={small ? { width: 30, height: 30 } : {}}>
-        <div className="as-blade" />
-        <div className="as-blade" />
-        <div className="as-blade" />
-        <div className="as-blade" />
-      </div>
-      <div className="as-logo-text">
-        <span className="as-lt-top">aakam</span>
-        <span className="as-lt-bot" style={small ? { fontSize: 18 } : {}}>Shine</span>
-      </div>
-    </a>
-  );
-}
+    <div>
 
-/* ─────────────────────────────────────────
-   FORM FIELD
-───────────────────────────────────────── */
-function Field({ label, type, placeholder, autoComplete, required }) {
-  const icon =
-    type === "email"    ? <IconEmail /> :
-    type === "password" ? <IconLock />  :
-                          <IconUser />;
+      {/* NAVBAR */}
+      <div className='flex items-center justify-between px-12 py-4 border-b border-orange-500-300 w-full'>
+        <img src="/image.png" className='w-25 flex items-center justify-center' alt="" />
 
-  return (
-    <div className="as-field">
-      <label>
-        {label} {required && <span className="req">*</span>}
-      </label>
-      <div className="as-field-wrap">
-        <span className="as-field-icon">{icon}</span>
-        <input type={type} placeholder={placeholder} autoComplete={autoComplete} />
-      </div>
-    </div>
-  );
-}
 
-/* ─────────────────────────────────────────
-   TICKER DATA
-───────────────────────────────────────── */
-const TICKER_ITEMS = [
-  { val: "50+",         text: "Startups Incubated" },
-  { val: "12K",         text: "Innovators Connected" },
-  { val: "6+",          text: "Years of Impact" },
-  { val: "Rural",       text: "Innovation Ecosystem" },
-  { val: "Your Growth", text: "Starts Here" },
-];
-
-/* ─────────────────────────────────────────
-   MAIN COMPONENT
-───────────────────────────────────────── */
-export default function AakamShine() {
-  const [tab, setTab] = useState("SI"); // "SI" = Sign In, "SU" = Sign Up
-
-  return (
-    <div className="as-root">
-
-      {/* ── Animated Background ── */}
-      <div className="as-bg">
-        <div className="as-wash as-wash-a" />
-        <div className="as-wash as-wash-b" />
-        <div className="as-wash as-wash-c" />
-        <div className="as-geo as-geo-sq" />
-        <div className="as-geo as-geo-sq2" />
-        <div className="as-geo as-geo-sq3" />
-        <div className="as-dot as-df1" />
-        <div className="as-dot as-df2" />
-        <div className="as-dot as-df3" />
-        <div className="as-dot as-df4" />
-        <div className="as-scan-line" />
-      </div>
-
-      {/* ── Navbar ── */}
-      <nav className="as-nav">
-        <Logo />
-        <ul className="as-nav-links">
-          {["Home", "About", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((link) => (
-            <li key={link}><a href="#">{link}</a></li>
+        <ul className='flex items-center gap-10 text-sm'>
+          {["Home", "About Us", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((item) => (
+            <li key={item} className='cursor-pointer pb-1 border-b-2 border-transparent text-[#4a5175] font-[13px] hover:border-[#f97316]'>
+              {item}
+            </li>
           ))}
         </ul>
-        <div className="as-nav-btns">
-          <button className="as-btn-ghost">Login</button>
-          <button className="as-btn-primary">Subscribe</button>
-        </div>
-      </nav>
 
-      {/* ── Stats Ticker ── */}
-      <div className="as-ticker-wrap" aria-hidden="true">
-        <div className="as-ticker-track">
-          {/* Duplicated for seamless infinite loop */}
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <div className="as-ticker-item" key={i}>
-              <span className="as-t-val">{item.val}</span>
-              {item.text}
-              <span className="as-ticker-sep">◆</span>
-            </div>
-          ))}
+        <div className='flex gap-6 items-center'>
+          <button className='rounded-md border border-gray-400 py-2 px-5 text-sm'>Log in</button>
+          <button className='bg-[#f97316] text-white font-semibold rounded-md py-2 px-5 text-sm'>Subscribe</button>
         </div>
       </div>
 
-      {/* ── Main Content ── */}
-      <div className="as-main">
+      {/* SCROLL */}
+      <div className="bg-[#0b1260] text-green-400 overflow-hidden whitespace-nowrap">
+        <div className="flex w-max scroll-animation">
 
-        {/* Left: Hero Copy */}
-        <div className="as-hero-left">
-          <div className="as-copy-block">
-
-            <div className="as-overline">
-              <span className="as-overline-bar" />
-              User Portal
+          {[1, 2].map((_, i) => (
+            <div key={i} className="flex gap-10 px-4 py-2 text-sm">
+              <span className='text-[#f97316]'>6+ <span className='text-white'>YEARS OF IMPACT</span></span>
+              <span className='text-[#f97316]'>◆</span>
+              <span className='text-[#f97316]'>RURAL <span className='text-white'>INNOVATION ECOSYSTEM</span></span>
+              <span className='text-[#f97316]'>◆</span>
+              <span className='text-[#f97316]'>YOUR GROWTH <span className='text-white'>STARTS HERE</span></span>
+              <span className='text-[#f97316]'>◆</span>
+              <span className='text-[#f97316]'>50+ <span className='text-white'>STARTUPS INCUBATED</span></span>
+              <span className='text-[#f97316]'>◆</span>
+              <span className='text-[#f97316]'>12K <span className='text-white'>INNOVATORS CONNECTED</span></span>
             </div>
+          ))}
 
-            <h1 className="as-big-headline">
-              <span className="as-outline-text">Your Growth</span>
-              <span>Starts</span>
-              <span className="as-accent-word">Here.</span>
+        </div>
+      </div>
+
+      {/* 🔥 HERO + LOGIN WRAPPER */}
+      <div className="flex ">
+
+        {/* LEFT HERO */}
+        <div className="w-[70%] pl-6 pr-80  bg-[rgb(236,239,250)] min-h-screen flex items-start justify-center pt-30 ">
+
+          <div className="text-left">
+
+            <p className="text-[#f97316] text-sm tracking-widest mb-4 font-bold">
+              USER PORTAL
+            </p>
+
+            <h1 className="leading-tight">
+              <p className="font-stretch-90% font-extrabold text-white text-transparent stroke-text text-[85px]">
+                YOUR GROWTH
+              </p>
+
+              <span className="block text-7xl font-black text-[#0b1260]">
+                STARTS
+              </span>
+
+              <span className="block text-7xl font-black text-[#f97316]">
+                HERE.
+              </span>
             </h1>
-
-            <div className="as-headline-rule" />
-
-            <p className="as-copy-desc">
-              Log in to access your space. Access your <strong>personalized dashboard</strong>,
-              track your applications, and connect with the startup ecosystem.
+            <div className="mt-6 w-[120px] h-[3px] bg-gradient-to-r from-[#f97316] to-transparent"></div>
+            <p className="mt-6 text-gray-600 max-w-md">
+              Log in to access your space. Access your{" "}
+              <span className="font-bold text-black">
+                personalized dashboard
+              </span>
+              , track your applications, and connect with the startup ecosystem.
             </p>
-
-            <p className="as-brand-desc">
-              Building a transformative rural incubation ecosystem to empower rural innovation
-              and drive equitable economic development.
+            <div className="mt-6 w-[450px] h-[1px] bg-gradient-to-r from-[#f97316] to-transparent"></div>
+            <p>
+              Building a transformative rural incubation ecosystem to
             </p>
-
+            <p>
+              empower rural innovation and drive equitable economic
+            </p>
+            <p>
+              development.
+            </p>
           </div>
         </div>
 
-        {/* Right: Form Panel */}
-        <div className="as-form-panel">
-          <div className="as-fp-top-bar" />
-          <div className="as-fp-inner">
+        {/* 🔥 RIGHT SIGN IN */}
+        <div className="w-[30%] bg-white flex items-start justify-end pt-[44px] pr-[80px] relative border-l border-white shadow-xl">
+          <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#f97316] via-[#f97316] to-black"></div>
+          <div className="w-[320px]">
 
-            <div className="as-fp-portal-tag">User <span>Portal</span></div>
-            <h2 className="as-fp-title">Sign In</h2>
-            <p className="as-fp-sub">Sign in to your account or create a new one</p>
+            <p className="text-[#f97316] text-sm tracking-widest mb-3">
+              — USER PORTAL
+            </p>
 
-            {/* Tab switcher */}
-            <div className="as-tabs">
+            <h2 className="text-4xl font-black mb-2">SIGN IN</h2>
+
+            <p className="text-gray-500 text-[13px] mb-6">
+              Sign in to your account or create a new one
+            </p>
+
+            {/* Tabs */}
+        
+            <div className="flex border w-90 border-[#dee4f8] bg-[#eef1f9]  rounded-lg h-10 overflow-hidden mb-4 p-0.5">
               <button
-                className={`as-tab-btn${tab === "SI" ? " active" : ""}`}
-                onClick={() => setTab("SI")}
-              >
+                onClick={() => setIsLogin(true)}
+                className={`w-1/2 py-1 rounded-lg ${isLogin ? "bg-blue-900 text-white" : "text-gray-500 "
+                  }`}>
                 Sign In
               </button>
               <button
-                className={`as-tab-btn${tab === "SU" ? " active" : ""}`}
-                onClick={() => setTab("SU")}
-              >
+                onClick={() => setIsLogin(false)
+                
+                
+                }
+                className={`w-1/2 py-1 rounded-lg ${!isLogin ? "bg-blue-900 text-white" : "text-gray-500"
+                  }`}>
                 Sign Up
               </button>
             </div>
+            
+            {isLogin ? (
 
-            {/* Sign In Form */}
-            {tab === "SI" && (
-              <div>
-                <div className="as-fields">
-                  <Field label="Full Name" type="text"     placeholder="Enter your full name" autoComplete="name"             required />
-                  <Field label="Password"  type="password" placeholder="Enter your password"  autoComplete="current-password"          />
-                </div>
-                <div className="as-meta-row">
-                  <a href="#" className="as-meta-link">Forgot password?</a>
-                </div>
-                <button className="as-cta-btn">Sign In →</button>
-              </div>
-            )}
+<div>
+  {/* Full Name */}
+  <div className="text-[12px] font-medium text-[#8890aa] mb-2">
+    FULL NAME <span className='text-[#f97316]'>*</span>
+  </div>
 
-            {/* Sign Up Form */}
-            {tab === "SU" && (
-              <div>
-                <div className="as-fields">
-                  <Field label="Full Name"     type="text"     placeholder="Enter your full name"     autoComplete="name"         required />
-                  <Field label="Email Address" type="email"    placeholder="Enter your email address" autoComplete="email"        required />
-                  <Field label="Password"      type="password" placeholder="Create a password"        autoComplete="new-password" required />
-                </div>
-                <button className="as-cta-btn" style={{ marginTop: 4 }}>Create Account →</button>
-              </div>
-            )}
+  <input
+    type="text"
+    placeholder="Enter your full name"
+    className="w-90 h-10 mt-2 text-[#8890aa] mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
+  />
+
+  {/* Password */}
+  <label className="text-[12px] font-medium text-[#8890aa]">
+    PASSWORD
+  </label>
+
+  <input
+    type="password"
+    placeholder="Enter your password"
+    className="w-90 h-10 text-[#8890aa] mt-2 mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
+  />
+
+  <div className="text-right text-sm text-gray-500 mb-6 cursor-pointer">
+    Forgot password?
+  </div>
+
+  <button className="w-90 bg-[#0b1260] text-white py-2 rounded-xl font-bold text-lg">
+    SIGN IN →
+  </button>
+</div>
+
+) : (
+
+<div className="mt-4">
+
+{/* FULL NAME */}
+<label className="text-[12px] font-semibold text-[#7c85a3]">
+  FULL NAME <span className="text-[#f97316]">*</span>
+</label>
+
+<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+  <input
+    type="text"
+    placeholder="Enter your full name"
+    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+  />
+</div>
+
+{/* EMAIL */}
+<label className="text-[12px] font-semibold text-[#7c85a3]">
+  EMAIL ADDRESS <span className="text-[#f97316]">*</span>
+</label>
+
+<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+  
+  <input
+    type="email"
+    placeholder="Enter your email address"
+    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+  />
+</div>
+
+{/* PASSWORD */}
+<label className="text-[12px] font-semibold text-[#7c85a3]">
+  PASSWORD <span className="text-[#f97316]">*</span>
+</label>
+
+<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+
+  <input
+    type="password"
+    placeholder="Create a password"
+    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+  />
+</div>
+
+{/* CONFIRM PASSWORD */}
+<label className="text-[12px] font-semibold text-[#7c85a3] w-full">
+  CONFIRM PASSWORD
+</label>
+
+<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+ 
+  <input
+    type="password"
+    placeholder="Confirm password"
+    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+  />
+</div>
+
+{/* CHECKBOX */}
+<div className="flex items-center gap-2 mb-5 text-sm text-gray-600">
+  <input type="checkbox" className="accent-blue-600 w-4 h-4" />
+  <span>
+    I agree to{" "}
+    <span className="underline cursor-pointer">Terms & Conditions</span>
+  </span>
+</div>
+
+{/* BUTTON */}
+<button className="w-90 bg-[#0b1260] text-white py-3 rounded-xl font-bold text-lg hover:opacity-90 transition ">
+  CREATE ACCOUNT →
+</button>
+
+</div>
+
+)}
+            {/* Divider */}
+            <div className="flex items-center my-6">
+              <div className="flex-1 h-px bg-[#e8ebf4]"></div>
+              <span className=" text-blue-400 text-sm">or</span>
+              <div className="flex-1 h-px w-100 bg-[#e8ebf4]"></div>
+            </div>
 
             {/* Newsletter */}
-            <div className="as-nl-divider">or</div>
-            <div className="as-nl-block">
-              <div className="as-nl-label">Subscribe to Newsletter</div>
-              <div className="as-nl-row">
-                <input type="email" placeholder="Your email address" />
-                <button>Subscribe</button>
+            <div className="border border-blue-200 rounded-xl p-3 w-90 mr-5 bg-[#eef1f9]">
+              <p className="text-[12px] text-[#8890aa] font-semibold mb-4 h-2">
+                SUBSCRIBE TO NEWSLETTER
+              </p>
+
+              <div className="flex gap-2 items-center">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="flex-1  text-[#8890aa] border text-sm bg-white border-blue-200 px-4 py-3 rounded-xl h-10"
+                />
+                <button className="bg-[#0b1260] text-white px-5 rounded-xl h-10">
+                  Subscribe
+                </button>
               </div>
             </div>
 
-            <div className="as-fp-foot">
-              © 2025 <a href="#">Aakam Shine</a>. All rights reserved.
-            </div>
-
           </div>
         </div>
 
-      </div>{/* end .as-main */}
-
-      {/* ── Footer ── */}
-      <footer className="as-footer">
-        <div className="as-fg">
-
-          {/* Brand */}
-          <div>
-            <Logo small />
-            <p className="as-f-brand-desc">
-              Building a transformative rural incubation ecosystem to empower rural innovation
-              and drive equitable economic development.
-            </p>
-            <div className="as-f-socials">
-              {["𝕏", "in", "f", "▶"].map((icon) => (
-                <div key={icon} className="as-f-soc">{icon}</div>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <div className="as-f-ht">Quick Links</div>
-            <ul className="as-f-links">
-              {["Home", "About", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((link) => (
-                <li key={link}><a href="#">{link}</a></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <div className="as-f-ht">Contact Us</div>
-            <div className="as-f-contact">
-              <div className="as-f-dot" />
-              <span>Pullipalayam, Sankari,<br />Tamil Nadu, India, 637304</span>
-            </div>
-            <div className="as-f-contact">
-              <div className="as-f-dot" />
-              +91 7200 171 774
-            </div>
-            <div className="as-f-contact">
-              <div className="as-f-dot" />
-              <a href="mailto:info@aakamshine.com">info@aakamshine.com</a>
-            </div>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <div className="as-f-ht">Newsletter</div>
-            <p className="as-f-nl-p">
-              Subscribe to our newsletter for the latest updates and innovations.
-            </p>
-            <div className="as-f-nl-row">
-              <input type="email" placeholder="Your email address" />
-              <button>Subscribe</button>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom bar */}
-        <div className="as-fb">
-          <p>© 2025 Aakam Shine. All rights reserved.</p>
-          <div className="as-fb-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Cookie Policy</a>
-          </div>
-        </div>
-
-      </footer>
+      </div>
 
     </div>
-  );
+  )
 }
+
+export default Signup
