@@ -1,20 +1,47 @@
 import React from 'react'
 import { useState } from 'react';
-// import images from "../assets/images.png"
+import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [isLogin, setIsLogin] = useState(true);
+
+  const navigate = useNavigate();
+
+  const menu = [
+    { name: "Home", path: "/home" },
+    { name: "About Us", path: "/about" },
+    { name: "Our Startups", path: "/startups" },
+    { name: "Our Ecosystem", path: "/ecosystem" },
+    { name: "Events", path: "/events" },
+    { name: "Contact", path: "/contact" }
+  ];
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm()
+  const onSubmit = (data) => {
+    console.log(data)
+
+  }
   return (
     <div>
 
       {/* NAVBAR */}
-      <div className='flex items-center justify-between px-12 py-4 border-b border-orange-500-300 w-full'>
+      <div className='flex items-center justify-between px-12 py-4 border-b border-orange-500 w-full'>
         <img src="/image.png" className='w-25 flex items-center justify-center' alt="" />
 
 
         <ul className='flex items-center gap-10 text-sm'>
-          {["Home", "About Us", "Our Startups", "Our Ecosystem", "Events", "Contact"].map((item) => (
-            <li key={item} className='cursor-pointer pb-1 border-b-2 border-transparent text-[#4a5175] font-[13px] hover:border-[#f97316]'>
-              {item}
+          {menu.map((item) => (
+            <li
+              key={item.name}
+              onClick={() => navigate(item.path)}
+              className='cursor-pointer pb-1 border-b-2 border-transparent text-[#4a5175] font-[13px] hover:border-[#f97316]'
+            >
+              {item.name}
             </li>
           ))}
         </ul>
@@ -45,7 +72,6 @@ const Signup = () => {
 
         </div>
       </div>
-
       {/*HERO + LOGIN WRAPPER */}
       <div className="flex ">
 
@@ -108,135 +134,200 @@ const Signup = () => {
             </p>
 
             {/* Tabs */}
-        
+
             <div className="flex border w-90 border-[#dee4f8] bg-[#eef1f9]  rounded-lg h-10 overflow-hidden mb-4 p-0.5">
               <button
                 onClick={() => setIsLogin(true)}
-                className={`w-1/2 py-1 rounded-lg ${isLogin ? "bg-blue-900 text-white" : "text-gray-500 "
-                  }`}>
+                className={`w-1/2 py-1 rounded-lg ${isLogin ? "bg-blue-900 text-white" : "text-gray-500 cursor-pointer "
+                  }`}
+              >
                 Sign In
               </button>
               <button
                 onClick={() => setIsLogin(false)
-                
-                
+
+
                 }
-                className={`w-1/2 py-1 rounded-lg ${!isLogin ? "bg-blue-900 text-white" : "text-gray-500"
+                className={`w-1/2 py-1 rounded-lg ${!isLogin ? "bg-blue-900 text-white" : "text-gray-500 cursor-pointer"
                   }`}>
                 Sign Up
               </button>
             </div>
-            
-            {isLogin ? (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {isLogin ? (
 
-<div>
-  {/* Full Name */}
-  <div className="text-[12px] font-medium text-[#8890aa] mb-2">
-    FULL NAME <span className='text-[#f97316]'>*</span>
-  </div>
+                <div>
+                  {/* Full Name */}
+                  <div className="text-[12px] font-medium text-[#8890aa] mb-2">
+                    FULL NAME <span className='text-[#f97316]'>*</span>
+                  </div>
 
-  <input
-    type="text"
-    placeholder="Enter your full name"
-    className="w-90 h-10 mt-2 text-[#8890aa] mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
-  />
+                  <input
+                    type="text"
+                    placeholder="Enter your full name"
+                    className="w-90 h-10 mt-2 text-[#8890aa] mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
+                    {
+                    ...register("name", { required: "Full name is required" })
+                    }
+                  />
+                  {errors.name && (
+                    <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                  )
 
-  {/* Password */}
-  <label className="text-[12px] font-medium text-[#8890aa]">
-    PASSWORD
-  </label>
+                  }
+                  {/* Password */}
+                  <label className="text-[12px] font-medium text-[#8890aa]">
+                    PASSWORD
+                  </label>
 
-  <input
-    type="password"
-    placeholder="Enter your password"
-    className="w-90 h-10 text-[#8890aa] mt-2 mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
-  />
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    className="w-90 h-10 text-[#8890aa] mt-2 mb-2 border border-[rgb(226,230,243)] rounded-lg px-4 py-3 bg-[#eaf2ff]"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 8,
+                        message: "Minimum 8 characters"
+                      }
+                    })}
+                  />
 
-  <div className="text-right text-sm text-gray-500 mb-6 cursor-pointer">
-    Forgot password?
-  </div>
+                  <div className="text-right text-sm text-gray-500 mb-6 cursor-pointer">
+                    Forgot password?
+                  </div>
 
-  <button className="w-90 bg-[#0b1260] text-white py-2 rounded-xl font-bold text-lg">
-    SIGN IN →
-  </button>
-</div>
+                  <button className="w-90 bg-[#0b1260] text-white py-2 rounded-xl font-bold text-lg cursor-pointer">
+                    SIGN IN →
+                  </button>
+                </div>
 
-) : (
+              ) : (
 
-<div className="mt-4">
+                <div className="mt-4">
 
-{/* FULL NAME */}
-<label className="text-[12px] font-semibold text-[#7c85a3]">
-  FULL NAME <span className="text-[#f97316]">*</span>
-</label>
+                  {/* FULL NAME */}
+                  <label className="text-[12px] font-semibold text-[#7c85a3]">
+                    FULL NAME <span className="text-[#f97316]">*</span>
+                  </label>
 
-<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
-  <input
-    type="text"
-    placeholder="Enter your full name"
-    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
-  />
-</div>
+                  <div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+                    <input
+                      type="text"
+                      placeholder="Enter your full name"
+                      className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+                      {
+                      ...register("name", { required: "Full name is required" })
+                      }
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                    )
+                    }
 
-{/* EMAIL */}
-<label className="text-[12px] font-semibold text-[#7c85a3]">
-  EMAIL ADDRESS <span className="text-[#f97316]">*</span>
-</label>
+                  </div>
 
-<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
-  
-  <input
-    type="email"
-    placeholder="Enter your email address"
-    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
-  />
-</div>
+                  {/* EMAIL */}
+                  <label className="text-[12px] font-semibold text-[#7c85a3]">
+                    EMAIL ADDRESS <span className="text-[#f97316]">*</span>
+                  </label>
 
-{/* PASSWORD */}
-<label className="text-[12px] font-semibold text-[#7c85a3]">
-  PASSWORD <span className="text-[#f97316]">*</span>
-</label>
+                  <div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
 
-<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /\S+@\S+\.\S+/,
+                          message: "Enter valid email"
+                        }
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </div>
 
-  <input
-    type="password"
-    placeholder="Create a password"
-    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
-  />
-</div>
+                  {/* PASSWORD */}
+                  <label className="text-[12px] font-semibold text-[#7c85a3]">
+                    PASSWORD <span className="text-[#f97316]">*</span>
+                  </label>
 
-{/* CONFIRM PASSWORD */}
-<label className="text-[12px] font-semibold text-[#7c85a3] w-full">
-  CONFIRM PASSWORD
-</label>
+                  <div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
 
-<div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
- 
-  <input
-    type="password"
-    placeholder="Confirm password"
-    className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
-  />
-</div>
+                    <input
+                      type="password"
+                      placeholder="Create a password"
+                      className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 8,
+                          message: "Minimum 8 characters"
+                        }
+                      })}
+                    />
+                    {errors.password && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </div>
 
-{/* CHECKBOX */}
-<div className="flex items-center gap-2 mb-5 text-sm text-gray-600">
-  <input type="checkbox" className="accent-blue-600 w-4 h-4" />
-  <span>
-    I agree to{" "}
-    <span className="underline cursor-pointer">Terms & Conditions</span>
-  </span>
-</div>
+                  {/* CONFIRM PASSWORD */}
+                  <label className="text-[12px] font-semibold text-[#7c85a3] w-full">
+                    CONFIRM PASSWORD
+                  </label>
 
-{/* BUTTON */}
-<button className="w-90 bg-[#0b1260] text-white py-3 rounded-xl font-bold text-lg hover:opacity-90 transition ">
-  CREATE ACCOUNT →
-</button>
+                  <div className="flex items-center mt-2 mb-4 border border-[#e3e7f2] rounded-xl bg-[#eef2fb] px-4 h-11 w-90">
 
-</div>
+                    <input
+                      type="password"
+                      placeholder="Confirm password"
+                      className="bg-transparent outline-none w-full text-sm text-[#7c85a3]"
+                      {...register("confirmPassword", {
+                        validate: (value) =>
+                          value === watch("password") || "Passwords do not match"
+                      })}
+                    />
+                    {errors.confirmPassword && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.confirmPassword.message}
+                      </p>
+                    )}
+                  </div>
 
-)}
+                  {/* CHECKBOX */}
+                  <div className="flex items-center gap-2 mb-5 text-sm text-gray-600">
+                    <input type="checkbox" className="accent-blue-600 w-4 h-4"
+                      {...register("terms", {
+                        required: "You must accept terms"
+                      })}
+                    />
+                    {errors.terms && (
+                      <p className="text-red-500 text-xs">
+                        {errors.terms.message}
+                      </p>
+                    )}
+                    <span>
+                      I agree to{" "}
+                      <span className="underline cursor-pointer">Terms & Conditions</span>
+                    </span>
+                  </div>
+
+                  {/* BUTTON */}
+                  <button type="submit" className="w-90 bg-[#0b1260] text-white py-3 rounded-xl font-bold text-lg hover:opacity-90 transition cursor-pointer ">
+                    CREATE ACCOUNT →
+                  </button>
+                </div>
+
+              )}
+            </form>
             {/* Divider */}
             <div className="flex items-center my-6">
               <div className="flex-1 h-px bg-[#e8ebf4]"></div>
@@ -268,107 +359,107 @@ const Signup = () => {
       </div>
       <div className="bg-[#0b1260] text-white px-16 py-16">
 
-  <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10">
 
-    {/* LEFT LOGO + TEXT */}
-    <div>
-       <p className="text-gray-300 text-sm leading-6 mb-6">
-        Building a transformative rural incubation ecosystem to empower rural
-        innovation and drive equitable economic development.
-      </p>
+          {/* LEFT LOGO + TEXT */}
+          <div>
+            <p className="text-gray-300 text-sm leading-6 mb-6">
+              Building a transformative rural incubation ecosystem to empower rural
+              innovation and drive equitable economic development.
+            </p>
 
-      {/* SOCIAL ICONS */}
-      <div className="flex gap-3">
-        {["X", "in", "f", "▶"].map((icon, i) => (
-          <div
-            key={i}
-            className="w-10 h-10 border border-white/20 rounded-md flex items-center justify-center text-sm cursor-pointer hover:bg-white hover:text-[#0b1260] transition"
-          >
-            {icon}
+            {/* SOCIAL ICONS */}
+            <div className="flex gap-3">
+              {["X", "in", "f", "▶"].map((icon, i) => (
+                <div
+                  key={i}
+                  className="w-10 h-10 border border-white/20 rounded-md flex items-center justify-center text-sm cursor-pointer hover:bg-white hover:text-[#0b1260] transition"
+                >
+                  {icon}
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+              QUICK LINKS
+            </h3>
+
+            <ul className="space-y-3 text-gray-300 text-sm">
+              <li className="hover:text-white cursor-pointer">Home</li>
+              <li className="hover:text-white cursor-pointer">About</li>
+              <li className="hover:text-white cursor-pointer">Our Startups</li>
+              <li className="hover:text-white cursor-pointer">Our Ecosystem</li>
+              <li className="hover:text-white cursor-pointer">Events</li>
+              <li className="hover:text-white cursor-pointer">Contact</li>
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div>
+            <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+              CONTACT US
+            </h3>
+
+            <ul className="space-y-4 text-gray-300 text-sm">
+              <li className="flex gap-2">
+                <span className="text-orange-500">•</span>
+                Pullipalayam, Sankari, Tamil Nadu, India, 637304
+              </li>
+
+              <li className="flex gap-2">
+                <span className="text-orange-500">•</span>
+                +917200171774
+              </li>
+
+              <li className="flex gap-2">
+                <span className="text-orange-500">•</span>
+                hello@aakamshine.com
+              </li>
+            </ul>
+          </div>
+
+          {/* NEWSLETTER */}
+          <div>
+            <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
+              NEWSLETTER
+            </h3>
+
+            <p className="text-gray-300 text-sm mb-4">
+              Subscribe to our newsletter for the latest updates and innovations.
+            </p>
+
+            <div className="flex">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 px-4 py-3 bg-[#1a237e] text-white rounded-l-md outline-none text-sm"
+              />
+
+              <button className="bg-orange-500 px-5 rounded-r-md font-semibold text-sm hover:bg-orange-600 transition">
+                SUBSCRIBE
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM LINE */}
+        <div className="border-t border-white/10 mt-12 pt-6 flex justify-between text-gray-400 text-sm">
+
+          <p>© 2025 Aakam Shine. All rights reserved.</p>
+
+          <div className="flex gap-6">
+            <span className="hover:text-white cursor-pointer">Privacy Policy</span>
+            <span className="hover:text-white cursor-pointer">Terms of Use</span>
+            <span className="hover:text-white cursor-pointer">Cookie Policy</span>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-
-    {/* QUICK LINKS */}
-    <div>
-      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
-        QUICK LINKS
-      </h3>
-
-      <ul className="space-y-3 text-gray-300 text-sm">
-        <li className="hover:text-white cursor-pointer">Home</li>
-        <li className="hover:text-white cursor-pointer">About</li>
-        <li className="hover:text-white cursor-pointer">Our Startups</li>
-        <li className="hover:text-white cursor-pointer">Our Ecosystem</li>
-        <li className="hover:text-white cursor-pointer">Events</li>
-        <li className="hover:text-white cursor-pointer">Contact</li>
-      </ul>
-    </div>
-
-    {/* CONTACT */}
-    <div>
-      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
-        CONTACT US
-      </h3>
-
-      <ul className="space-y-4 text-gray-300 text-sm">
-        <li className="flex gap-2">
-          <span className="text-orange-500">•</span>
-          Pullipalayam, Sankari, Tamil Nadu, India, 637304
-        </li>
-
-        <li className="flex gap-2">
-          <span className="text-orange-500">•</span>
-          +917200171774
-        </li>
-
-        <li className="flex gap-2">
-          <span className="text-orange-500">•</span>
-          hello@aakamshine.com
-        </li>
-      </ul>
-    </div>
-
-    {/* NEWSLETTER */}
-    <div>
-      <h3 className="text-gray-400 text-sm mb-4 tracking-widest">
-        NEWSLETTER
-      </h3>
-
-      <p className="text-gray-300 text-sm mb-4">
-        Subscribe to our newsletter for the latest updates and innovations.
-      </p>
-
-      <div className="flex">
-        <input
-          type="email"
-          placeholder="Your email address"
-          className="flex-1 px-4 py-3 bg-[#1a237e] text-white rounded-l-md outline-none text-sm"
-        />
-
-        <button className="bg-orange-500 px-5 rounded-r-md font-semibold text-sm hover:bg-orange-600 transition">
-          SUBSCRIBE
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  {/* BOTTOM LINE */}
-  <div className="border-t border-white/10 mt-12 pt-6 flex justify-between text-gray-400 text-sm">
-
-    <p>© 2025 Aakam Shine. All rights reserved.</p>
-
-    <div className="flex gap-6">
-      <span className="hover:text-white cursor-pointer">Privacy Policy</span>
-      <span className="hover:text-white cursor-pointer">Terms of Use</span>
-      <span className="hover:text-white cursor-pointer">Cookie Policy</span>
-    </div>
-
-  </div>
-
-</div>
 
     </div>
   )
