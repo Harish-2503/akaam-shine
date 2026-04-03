@@ -357,6 +357,10 @@ const Signup = () => {
         </div>
 
       </div>
+
+
+
+      
       <div className="bg-[#0b1260] text-white px-16 py-16">
 
         <div className="grid grid-cols-4 gap-10">
