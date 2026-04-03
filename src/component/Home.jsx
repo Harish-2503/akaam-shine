@@ -627,7 +627,7 @@ const Home = () => {
           </div>
         </section>
       </div>
-      <section className=" text-white py-20 min-h-screen">
+      <section className=" text-white py-20 ">
         <div className="max-w-7xl mx-auto text-center">
 
           {/* TOP HEADING */}
