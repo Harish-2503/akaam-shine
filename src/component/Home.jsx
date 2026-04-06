@@ -947,7 +947,6 @@ const Home = () => {
               </li>
             </ul>
           </div>
-
           {/* NEWSLETTER */}
           <div>
             <h3 className="text-gray-400 text-sm mb-4 tracking-widest">

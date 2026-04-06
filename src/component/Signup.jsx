@@ -76,7 +76,7 @@ const Signup = () => {
       <div className="flex ">
 
         {/* LEFT HERO */}
-        <div className="w-[70%] pl-6 pr-80  bg-[rgb(236,239,250)] min-h-screen flex items-start justify-center pt-30 ">
+        <div className="w-[70%] pl-6 pr-80  bg-[rgb(236,239,250)] min-h-[110vh] flex items-start justify-center pt-30 ">
 
           <div className="text-left">
 
@@ -361,7 +361,7 @@ const Signup = () => {
 
 
       
-      <div className="bg-[#0b1260] text-white px-16 py-16">
+      <div className="bg-[#0b1260] text-white px-16 py-16 ">
 
         <div className="grid grid-cols-4 gap-10">
 
