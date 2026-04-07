@@ -48,7 +48,7 @@ const Signup = () => {
 
         <div className='flex gap-6 items-center'>
           <button className='rounded-md border border-gray-400 py-2 px-5 text-sm'>Log in</button>
-          <button className='bg-[#f97316] text-white font-semibold rounded-md py-2 px-5 text-sm'>Subscribe</button>
+          <button onClick={() => navigate("/subscribe")} className='bg-[#f97316] text-white font-semibold rounded-md py-2 px-5 text-sm cursor-pointer hover:bg-orange-400'>Subscribe</button>
         </div>
       </div>
 
