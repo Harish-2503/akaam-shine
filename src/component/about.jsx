@@ -2,6 +2,7 @@ import React from 'react'
 const about = () => {
   return (
     <div>
+      
       {/* Hero */}
       <div className='bg-[#0b1260] min-h-[75vh] '>
         <div className=' ml-20'>

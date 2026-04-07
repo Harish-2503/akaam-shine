@@ -10,8 +10,30 @@ import {
 import { useNavigate } from "react-router-dom";
 const subscribe = () => {
   const navigate = useNavigate();
+  const menu = [
+    { name: "Home", path: "/home" },
+    { name: "About Us", path: "/about" },
+    { name: "Our Startups", path: "/startups" },
+    { name: "Our Ecosystem", path: "/ecosystem" },
+    { name: "Events", path: "/events" },
+    { name: "Contact", path: "/contact" }
+  ];
   return (
     <div>
+      <div className='flex items-center justify-between border-b border-orange-500 p-2 sticky top-0 z-50 bg-white shadow-md'>
+        <img src="/image.png" className='w-25 h-15 flex items-center justify-center' alt="" />
+        <ul className='flex gap-10 '>
+          {
+            menu.map((item, index) => (
+              <li className='  cursor-pointer text-sm text-[#4a5175]' key={index} onClick={() => navigate(item.path)}>
+                {item.name}
+              </li>
+            ))}
+        </ul>
+        <div>
+          <button onClick={() => navigate("/login")} className='bg-[#f97316] text-white font-semibold rounded-md py-2 px-5 text-sm cursor-pointer hover:bg-orange-400'>Login</button>
+        </div>
+        </div>
       <div className='flex min-h-[40vh] bg-[#0b1260] items-center pl-10'>
         <div>
           <p className='text-white text-7xl font-bold'>
