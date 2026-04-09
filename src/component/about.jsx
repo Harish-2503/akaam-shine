@@ -1,8 +1,38 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 const about = () => {
+  const navigate = useNavigate();
+  const menu = [
+    { name: "Home", path: "/home" },
+    { name: "About Us", path: "/about" },
+    { name: "Our Startups", path: "/startups" },
+    { name: "Our Ecosystem", path: "/ecosystem" },
+    { name: "Events", path: "/events" },
+    { name: "Contact", path: "/contact" }
+  ];
   return (
     <div>
-      
+       <div className='flex items-center justify-between px-12 py-4 border-b border-orange-500 w-full'>
+        <img src="/image.png" className='w-25 flex items-center justify-center' alt="" />
+
+
+        <ul className='flex items-center gap-10 text-sm'>
+          {menu.map((item) => (
+            <li
+              key={item.name}
+              onClick={() => navigate(item.path)}
+              className='cursor-pointer pb-1 border-b-2 border-transparent text-[#4a5175] font-[13px] hover:border-[#f97316]'
+            >
+              {item.name}
+            </li>
+          ))}
+        </ul>
+
+        <div className='flex gap-6 items-center'>
+          <button className='rounded-md border border-gray-400 py-2 px-5 text-sm'>Log in</button>
+          <button onClick={() => navigate("/subscribe")} className='bg-[#f97316] text-white font-semibold rounded-md py-2 px-5 text-sm cursor-pointer hover:bg-orange-400'>Subscribe</button>
+        </div>
+      </div>
       {/* Hero */}
       <div className='bg-[#0b1260] min-h-[75vh] '>
         <div className=' ml-20'>
