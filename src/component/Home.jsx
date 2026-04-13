@@ -487,7 +487,7 @@ const Home = () => {
       <div className=" py-16 ">
 
         {/* Heading */}
-        <div className="text-center mb-12 max-w-2xl mx-auto">
+        <div className="text-center mb-12 max-w-2xl mx-auto ">
           <p className="text-sm text-orange-500 tracking-wider font-medium">
             IMPACT
           </p>
@@ -499,6 +499,7 @@ const Home = () => {
             transforming rural India.
           </p>
         </div>
+        
 
         {/* Grid */}
         <div className="grid md:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 auto-rows-[240px] ">
@@ -538,6 +539,14 @@ const Home = () => {
               </span>
             </div>
           ))}
+         <div className="flex items-end mt-6">
+  <button
+    onClick={() => navigate("/stories")}
+    className="text-black  font-medium hover:text-orange-500"
+  >
+    View more →
+  </button>
+</div>
         </div>
         <section className="bg-[#0f1e6b] text-white py-20  mt-10">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -691,6 +700,11 @@ const Home = () => {
               </div>
             ))}
           </div>
+            <div className="flex justify-end mt-6">
+  <button onClick={()=> navigate("/communityhigh")} className="text-sm text-gray-600 hover:text-orange-600">
+    View more
+  </button>
+</div>
 
         </div>
       </section>

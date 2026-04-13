@@ -1,7 +1,6 @@
 import React, { useRef,useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapPin, Mail, Phone, Upload, Clock, } from "lucide-react";
-
+import { MapPin, Mail, Phone, Upload, Clock, } from "lucide-react";                               
 const Contact = () => {
   const navigate = useNavigate();
 
@@ -11,7 +10,7 @@ const Contact = () => {
     { name: "Our Startups", path: "/startups" },
     { name: "Our Ecosystem", path: "/ecosystem" },
     { name: "Events", path: "/events" },
-    { name: "Contact", path: "/contact" },
+    { name: "Contact", path: "/contact" },  
   ];
   const fileInputRef = useRef();
 

@@ -297,7 +297,7 @@ const startup = () => {
             </ul>
 
             {/* Button */}
-            <button className="mt-8 w-full border border-gray-300 py-3 rounded-xl font-semibold text-[#1E2A5A] hover:bg-gray-100 transition">
+            <button onClick={() => navigate("/mentor")} className="mt-8 w-full border border-gray-300 py-3 rounded-xl font-semibold text-[#1E2A5A] hover:bg-gray-100 transition ">
               Apply for Mentorship →
             </button>
           </div>
