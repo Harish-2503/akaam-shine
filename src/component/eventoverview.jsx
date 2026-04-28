@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 const eventoverview = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="relative bg-[#0b1b6f] text-white overflow-hidden">
@@ -279,7 +280,7 @@ const eventoverview = () => {
         {/* RIGHT BUTTONS */}
         <div className="flex flex-col gap-4 w-full md:w-auto">
 
-          <button className="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold text-sm transition">
+          <button onClick={() => navigate("/designaithon")} className="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold text-sm transition">
             Apply for Upcoming Events →
           </button>
 

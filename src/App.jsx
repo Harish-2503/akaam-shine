@@ -14,6 +14,15 @@ import Communityhigh from "./component/communityhigh";
 import Incubation from "./component/incubation"
 import BecomeMentor from "./component/becomeMentor";
 import Invest from "./component/invest";
+import Partner from "./component/partner";
+import Registration from "./component/registration";
+import Mvp from "./component/mvp"
+import Designaithon from "./component/designaithon"
+import Nextgen from "./component/nextgen"
+import Incubatee from "./component/incubatee";
+import Dashboard from "./component/dashboard";
+import Keyinit from "./component/keyinit";
+import Journey from "./component/journey";
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +45,15 @@ function App() {
          <Route path="/incubation" element={<Incubation />} />
          <Route path="/becomeMentor" element={<BecomeMentor/>}></Route>
          <Route path="/invest" element={<Invest/>}></Route>
+         <Route path="/partner" element={<Partner/>}></Route>
+         <Route path="/registration" element={<Registration/>}></Route>
+         <Route path="/mvp" element={<Mvp/>}></Route>
+         <Route path="/designaithon" element={<Designaithon/>}></Route>
+         <Route path="/nextgen" element={<Nextgen/>}></Route>
+         <Route path="/incubatee" element={<Incubatee/>}></Route>
+         <Route path="/dashboard" element={<Dashboard/>}></Route>
+         <Route path="/keyinit" element={<Keyinit/>}></Route>
+         <Route path="/journey" element={<Journey/>}></Route>
       </Routes>
       
     </BrowserRouter>

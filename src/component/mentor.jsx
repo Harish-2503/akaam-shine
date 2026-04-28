@@ -50,8 +50,8 @@ const mentor = () => {
   }
 
     return (
-    <div>
-      <div className="relative bg-[#0B1B5E] text-white overflow-hidden">
+    <div className='bg-[#F5F7FB]'>
+      <div className="relative bg-[#0B1B5E] text-white overflow-hidden mb-15">
       
       {/* Grid + dots background */}
       <div className="absolute inset-0 opacity-10 
@@ -151,7 +151,7 @@ const mentor = () => {
 
       </div>
     </div>
-    <div className="bg-[#F5F7FB] py-20 px-6">
+    <div className="bg-[#F5F7FB] mb-15 px-6">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
@@ -312,7 +312,7 @@ const mentor = () => {
         </div>
       </div>
     </div>
- <div className="bg-[#F5F7FB] ">
+ <div className="bg-[#F5F7FB] mb-15">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
@@ -428,7 +428,7 @@ const mentor = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[#F5F7FB] py-20 px-6">
+    <div className="bg-[#F5F7FB] mb-15 px-6">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
@@ -531,7 +531,7 @@ const mentor = () => {
       </div>
     </div>
     <div className="bg-[#F5F7FB] ">
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border mb-15 border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-blue-500" />
@@ -609,7 +609,7 @@ const mentor = () => {
         </div>
       </div>
     </div>
-     <div className="bg-[#F5F7FB] ">
+     <div className="bg-[#F5F7FB] mb-15">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
@@ -699,7 +699,7 @@ const mentor = () => {
 
       </div>
     </div>
-    <div className="bg-[#F5F7FB] py-16 px-6">
+    <div className="bg-[#F5F7FB]  px-6">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm p-10 border border-gray-100 relative overflow-hidden">
 
         {/* Top Gradient Border */}
