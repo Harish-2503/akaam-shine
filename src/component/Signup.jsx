@@ -26,6 +26,7 @@ const Signup = () => {
     console.log(data)
 
   }
+  
   return (
     <div>
 
